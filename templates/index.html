@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Nanba - Easy Git Interface for Beginners With AI Support</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-git-alt"></i>Git Nanba - Easy Git Interface for Beginners With AI Support</h1>
+            <div class="header-controls">
+                <button id="gemini-config-btn" class="btn btn-secondary">
+                    <i class="fas fa-robot"></i> Configure AI
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Directory Selection Section -->
+            <section class="card">
+                <h2><i class="fas fa-folder-open"></i> Directory Selection</h2>
+                <div class="input-group">
+                    <input type="text" id="directory-input" placeholder="Enter directory path (e.g., C:\Users\YourName\Projects\MyRepo)">
+                    <button id="set-directory-btn" class="btn btn-primary">Set Directory</button>
+                </div>
+                <div id="directory-status" class="status-message"></div>
+            </section>
+
+            <!-- Repository Initialization -->
+            <section class="card">
+                <h2><i class="fas fa-plus-circle"></i> Repository Management</h2>
+                <div class="button-group">
+                    <button id="init-repo-btn" class="btn btn-success" disabled>
+                        <i class="fas fa-play"></i> Initialize Repository
+                    </button>
+                    <button id="status-btn" class="btn btn-info" disabled>
+                        <i class="fas fa-info-circle"></i> Check Status
+                    </button>
+                </div>
+            </section>
+
+            <!-- File Operations -->
+            <section class="card">
+                <h2><i class="fas fa-file-code"></i> File Operations</h2>
+                <div class="file-operations">
+                    <div class="input-group">
+                        <input type="text" id="files-input" placeholder="File paths (leave empty for all files)">
+                        <button id="add-files-btn" class="btn btn-warning" disabled>
+                            <i class="fas fa-plus"></i> Stage Files
+                        </button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="commit-message-input" placeholder="Commit message">
+                        <button id="commit-btn" class="btn btn-success" disabled>
+                            <i class="fas fa-check"></i> Commit Changes
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Remote Repository -->
+            <section class="card">
+                <h2><i class="fas fa-cloud"></i> Remote Repository</h2>
+                <div class="remote-operations">
+                    <div class="input-group">
+                        <input type="text" id="remote-url-input" placeholder="GitHub repository URL (e.g., https://github.com/username/repo.git)">
+                        <button id="add-remote-btn" class="btn btn-primary" disabled>
+                            <i class="fas fa-link"></i> Add Remote
+                        </button>
+                    </div>
+                    <div class="branch-selection">
+                        <label for="branch-select">Branch:</label>
+                        <select id="branch-select">
+                            <option value="main">main</option>
+                            <option value="master">master</option>
+                        </select>
+                        <button id="set-branch-btn" class="btn btn-secondary" disabled>
+                            <i class="fas fa-code-branch"></i> Set Branch
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Push/Pull Operations -->
+            <section class="card">
+                <h2><i class="fas fa-sync-alt"></i> Sync Operations</h2>
+                <div class="button-group">
+                    <button id="push-btn" class="btn btn-success" disabled>
+                        <i class="fas fa-upload"></i> Push to Remote
+                    </button>
+                    <button id="pull-btn" class="btn btn-info" disabled>
+                        <i class="fas fa-download"></i> Pull from Remote
+                    </button>
+                </div>
+            </section>
+
+            <!-- Status Display -->
+            <section class="card">
+                <h2><i class="fas fa-terminal"></i> Status & Output</h2>
+                <div id="output-container">
+                    <pre id="output-display">Ready to start Git operations...</pre>
+                </div>
+                <div class="output-controls">
+                    <button id="clear-output-btn" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Clear Output
+                    </button>
+                </div>
+            </section>
+
+            <!-- AI Help Section -->
+            <section class="card ai-section" id="ai-section" style="display: none;">
+                <h2><i class="fas fa-robot"></i> AI Assistant Response</h2>
+                <div class="ai-model-info">
+                    <span id="ai-model-used">Model: </span>
+                </div>
+                <div id="ai-response-container" class="markdown-content">
+                    <div id="ai-response"></div>
+                </div>
+                <div class="ai-controls">
+                    <button id="copy-response-btn" class="btn btn-secondary">
+                        <i class="fas fa-copy"></i> Copy Response
+                    </button>
+                    <button id="copy-commands-btn" class="btn btn-primary">
+                        <i class="fas fa-terminal"></i> Extract Commands
+                    </button>
+                    <button id="copy-to-terminal-btn" class="btn btn-success">
+                        <i class="fas fa-play"></i> Execute Commands
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Processing...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Configuration Modal -->
+    <div id="ai-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> Configure AI Assistant</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Model Selection -->
+                <div class="ai-config-section">
+                    <h4><i class="fas fa-brain"></i> Select AI Model</h4>
+                    <div class="model-selection">
+                        <select id="ai-model-select">
+                            <option value="">Loading models...</option>
+                        </select>
+                        <button id="set-model-btn" class="btn btn-primary">Set Model</button>
+                    </div>
+                </div>
+
+                <!-- API Key Configuration -->
+                <div class="ai-config-section">
+                    <h4><i class="fas fa-key"></i> API Key Configuration</h4>
+                    <div id="api-key-inputs">
+                        <!-- Dynamic API key inputs will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Current Status -->
+                <div class="ai-config-section">
+                    <h4><i class="fas fa-info-circle"></i> Current Status</h4>
+                    <div id="ai-status" class="status-display">
+                        <span id="current-model">No model selected</span>
+                        <span id="model-status" class="status-indicator"></span>
+                    </div>
+                </div>
+
+                <!-- API Key Help -->
+                <div class="ai-config-section">
+                    <h4><i class="fas fa-question-circle"></i> Get API Keys</h4>
+                    <div class="api-links">
+                        <a href="https://makersuite.google.com/app/apikey" target="_blank" class="api-link">
+                            <i class="fab fa-google"></i> Google (Gemini)
+                        </a>
+                        <a href="https://platform.openai.com/api-keys" target="_blank" class="api-link">
+                            <i class="fas fa-brain"></i> OpenAI (GPT)
+                        </a>
+                        <a href="https://console.anthropic.com/" target="_blank" class="api-link">
+                            <i class="fas fa-robot"></i> Anthropic (Claude)
+                        </a>
+                        <a href="https://platform.deepseek.com/" target="_blank" class="api-link">
+                            <i class="fas fa-code"></i> DeepSeek
+                        </a>
+                        <a href="https://ollama.ai/" target="_blank" class="api-link">
+                            <i class="fas fa-server"></i> Ollama (Local)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Command Execution Modal -->
+    <div id="command-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-terminal"></i> Execute Commands</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="commands-list"></div>
+                <div class="modal-controls">
+                    <button id="execute-all-commands" class="btn btn-success">
+                        <i class="fas fa-play"></i> Execute All Commands
+                    </button>
+                    <button id="close-command-modal" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
