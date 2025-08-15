@@ -51,13 +51,13 @@ python app.py
 <div align="center">
   
 ### 🎨 Main Interface
-<img src="Screenshot/Git-Nanba-AI.png" alt="Git Nanba Main Interface" width="700">
+<img src="Git-Nanba-AI.png" alt="Git Nanba Main Interface" width="700">
 
 ### ☀️ Light Theme
-<img src="Screenshot/Git-Nanba-Light-UI.png" alt="Git Nanba Light Theme" width="700">
+<img src="Git-Nanba-Light-UI.png" alt="Git Nanba Light Theme" width="700">
 
 ### 🌙 Dark Theme  
-<img src="Screenshot/Git-Nanba-Dark-UI.png" alt="Git Nanba Dark Theme" width="700">
+<img src="Git-Nanba-Dark-UI.png" alt="Git Nanba Dark Theme" width="700">
 
 *✨ Experience Git operations through a beautiful, intuitive interface with both light and dark themes*
 
@@ -233,3 +233,4 @@ This project is open source and available under the MIT License.
 - **🤖 Google Gemini AI**: AI-powered error assistance
 - **🎨 Font Awesome**: Icons for the interface
 - **📚 Git**: Version control system
+
