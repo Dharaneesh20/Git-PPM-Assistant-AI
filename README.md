@@ -27,7 +27,7 @@ A comprehensive Flask web application that provides a user-friendly GUI for Git 
 - 🚀 No installation required!
 
 ### 🐧 **Linux (.deb)**
-[![Download for Linux](https://img.shields.io/badge/Download-Linux%20.deb-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://github.com/Dharaneesh20/Git-Nanba-AI/releases/latest/download/git-nanba-ai.deb)
+[![Download for Linux](https://img.shields.io/badge/Download-Linux%20.deb-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://github.com/Dharaneesh20/Git-Nanba-AI/releases/download/Linux_BETA_x64.deb/git-nanba_1.0.0_all.deb)
 
 **Installation:**
 ```bash
@@ -233,4 +233,5 @@ This project is open source and available under the MIT License.
 - **🤖 Google Gemini AI**: AI-powered error assistance
 - **🎨 Font Awesome**: Icons for the interface
 - **📚 Git**: Version control system
+
 
