@@ -1,4 +1,4 @@
-# 🚀 Git Nanba AI - Git GUI Web Application
+# 🚀 Git PUSH/PULL ASSISTANT AI - Git GUI Web Application
 
 A comprehensive Flask web application that provides a user-friendly GUI for Git version control operations with AI-powered error assistance using Google's Gemini AI.
 
@@ -233,5 +233,6 @@ This project is open source and available under the MIT License.
 - **🤖 Google Gemini AI**: AI-powered error assistance
 - **🎨 Font Awesome**: Icons for the interface
 - **📚 Git**: Version control system
+
 
 
