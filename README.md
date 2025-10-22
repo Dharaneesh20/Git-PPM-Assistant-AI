@@ -228,5 +228,11 @@ Feel free to contribute to this project by:
 This project is open source and available under the MIT License.
 
 
+## 🙏 Acknowledgments
+
+- **🌐 Flask**: Web framework for Python
+- **🤖 Google Gemini AI**: AI-powered error assistance
+- **🎨 Font Awesome**: Icons for the interface
+- **📚 Git**: Version control system
 
 
