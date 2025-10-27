@@ -1,6 +1,6 @@
 # 🚀 Git PUSH/PULL ASSISTANT AI - Git GUI Web Application
 
-A comprehensive Flask web application that provides a user-friendly GUI for Git version control operations with AI-powered error assistance using Google's Gemini AI.
+A comprehensive Flask web application that provides a user-friendly GUI for Git version control operations with AI-powered error assistance using Google's Gemini AI and multiple AI Providers.
 
 <div align="center">
 
