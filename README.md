@@ -215,13 +215,7 @@ GitFr/
 2. 📺 Check the real-time output display for detailed error messages
 3. 📚 Refer to Git documentation for specific command help
 
-## 🤝 Contributing
 
-Feel free to contribute to this project by:
-- 🐛 Reporting bugs
-- 💡 Suggesting new features
-- 🔧 Submitting pull requests
-- 📖 Improving documentation
 
 ## 📄 License
 
@@ -234,5 +228,6 @@ This project is open source and available under the MIT License.
 - **🤖 Google Gemini AI**: AI-powered error assistance
 - **🎨 Font Awesome**: Icons for the interface
 - **📚 Git**: Version control system
+
 
 
